@@ -35,7 +35,7 @@ jobs:
 
       - name: Build with Nuitka
         run: |
-          uv run --refresh --with "nuitka>=2.0" --with pyside6 --with soundfile --with kokoro-onnx --with onnxruntime --with espeakng-loader python -m nuitka --onefile --remove-output --enable-plugin=pyside6 --follow-imports --include-package=onnxruntime --include-package=kokoro_onnx --include-package=espeakng_loader --include-package-data=onnxruntime --include-package-data=kokoro_onnx --include-package-data=language_tags --include-package-data=espeakng_loader --assume-yes-for-downloads --disable-ccache --jobs=2 --output-filename=${{ matrix.executable }} voices.py
+          uv run --refresh --with "nuitka>=2.0" --with pyside6 --with soundfile --with kokoro-onnx --with onnxruntime --with espeakng-loader python -m nuitka --onefile --remove-output --enable-plugin=pyside6 --follow-imports --include-package=soundfile --include-package=onnxruntime --include-package=kokoro_onnx --include-package=espeakng_loader --include-data-dir=assets=assets --include-package-data=onnxruntime --include-package-data=kokoro_onnx --include-package-data=language_tags --include-package-data=espeakng_loader --assume-yes-for-downloads --disable-ccache --jobs=2 --output-filename=${{ matrix.executable }} voices.py
 
       - name: Upload Release
         uses: softprops/action-gh-release@v2
