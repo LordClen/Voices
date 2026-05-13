@@ -1,0 +1,22 @@
+# Ambientes Virtuais
+.venv/
+env/
+venv/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDEs
+.qtcreator/
+.vscode/
+.idea/
+
+# Nuitka (pastas de compilação)
+*.build/
+*.dist/
+
+# Binários gerados
+*.exe
+*.bin

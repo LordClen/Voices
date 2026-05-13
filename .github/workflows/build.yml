@@ -1,0 +1,41 @@
+name: Build Releases
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            executable: voices.exe
+          - os: ubuntu-latest
+            executable: voices.bin
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies (Linux only)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libasound2-dev libespeak-ng-dev
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Build with Nuitka
+        run: |
+          uv run --with nuitka --with pyside6 python -m nuitka --onefile --remove-output --enable-plugin=pyside6 --follow-imports --include-package=onnxruntime --include-package=kokoro_onnx --include-package=espeakng_loader --include-package-data=onnxruntime --include-package-data=kokoro_onnx --include-package-data=language_tags --include-package-data=espeakng_loader --output-filename=${{ matrix.executable }} voices.py
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.executable }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
