@@ -1,0 +1,7 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/">
+        <file>assets/icons/voices.png</file>
+        <file>assets/icons/about.svg</file>
+        <file>assets/icons/aboutBlack.svg</file>
+    </qresource>
+</RCC>

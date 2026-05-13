@@ -18,6 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QDialog, QHBoxLayout, QLabel,
     QPushButton, QSizePolicy, QSpacerItem, QVBoxLayout,
     QWidget)
+import resources_rc
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -43,7 +44,7 @@ class Ui_Dialog(object):
         self.logoLabel.setObjectName(u"logoLabel")
         self.logoLabel.setMinimumSize(QSize(47, 47))
         self.logoLabel.setMaximumSize(QSize(47, 47))
-        self.logoLabel.setPixmap(QPixmap(u"assets/icons/voices.png"))
+        self.logoLabel.setPixmap(QPixmap(u":/assets/icons/voices.png"))
         self.logoLabel.setScaledContents(True)
 
         self.horizontalLayout.addWidget(self.logoLabel, 0, Qt.AlignmentFlag.AlignVCenter)

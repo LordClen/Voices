@@ -32,7 +32,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap>assets/icons/voices.png</pixmap>
+         <pixmap resource="resources.qrc">:/assets/icons/voices.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
@@ -87,8 +87,8 @@
          <string/>
         </property>
         <property name="icon">
-         <iconset>
-          <normaloff>assets/icons/about.svg</normaloff>assets/icons/about.svg</iconset>
+         <iconset resource="resources.qrc">
+          <normaloff>:/assets/icons/about.svg</normaloff>:/assets/icons/about.svg</iconset>
         </property>
         <property name="iconSize">
          <size>
@@ -273,6 +273,8 @@ color: white; font-weight: bold;</string>
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

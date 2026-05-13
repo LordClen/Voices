@@ -15,4 +15,4 @@ dependencies = [
 ]
 
 [tool.pyside6-project]
-files = ["voices.py", "form.ui", "form.py", "about.ui", "about.py", "effects.py"]
+files = ["voices.py", "form.ui", "form.py", "about.ui", "about.py", "effects.py", "resources_rc.py", "resources.qrc"]

@@ -18,6 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QComboBox, QDoubleSpinBox, QFrame,
     QHBoxLayout, QLabel, QMainWindow, QPushButton,
     QSizePolicy, QTextEdit, QVBoxLayout, QWidget)
+import resources_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -34,7 +35,7 @@ class Ui_MainWindow(object):
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
         self.label.setMaximumSize(QSize(40, 40))
-        self.label.setPixmap(QPixmap(u"assets/icons/voices.png"))
+        self.label.setPixmap(QPixmap(u":/assets/icons/voices.png"))
         self.label.setScaledContents(True)
 
         self.horizontalLayout_11.addWidget(self.label)
@@ -59,7 +60,7 @@ class Ui_MainWindow(object):
 "")
         self.aboutButton.setInputMethodHints(Qt.InputMethodHint.ImhNone)
         icon = QIcon()
-        icon.addFile(u"assets/icons/about.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u":/assets/icons/about.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.aboutButton.setIcon(icon)
         self.aboutButton.setIconSize(QSize(30, 30))
 
