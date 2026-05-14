@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-    <!-- Substitua por novos GUIDs se desejar, mas estes servem perfeitamente -->
-    <Product Id="*" Name="Voices" Language="1046" Version="0.1.0" Manufacturer="LordClen" UpgradeCode="a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d">
+    <Product Id="*" Name="Voices" Language="1046" Version="1.0.0" Manufacturer="SeuNome" UpgradeCode="a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d">
         <Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
 
         <MajorUpgrade DowngradeErrorMessage="Uma versão mais recente do Voices já está instalada." />
         <MediaTemplate EmbedCab="yes" />
 
         <Directory Id="TARGETDIR" Name="SourceDir">
-            <!-- Define a instalação na pasta AppData Local do usuário -->
             <Directory Id="LocalAppDataFolder">
                 <Directory Id="APPLICATIONFOLDER" Name="Voices">
                     <Component Id="MainExecutable" Guid="b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e">
-                        <!-- Substitua 'voices.exe' se o nome interno do seu executável for outro -->
-                        <File Id="VoicesEXE" Source="SourceFiles\voices.exe" KeyPath="yes">
-                            <!-- Cria um atalho no Menu Iniciar do usuário -->
+                        <!-- Ajustado o caminho para SourceFiles\voices.dist\voices.exe -->
+                        <File Id="VoicesEXE" Source="SourceFiles\voices.dist\voices.exe" KeyPath="yes">
                             <Shortcut Id="StartMenuShortcut" Directory="ProgramMenuFolder" Name="Voices" WorkingDirectory="APPLICATIONFOLDER" Advertise="yes" />
                         </File>
-                        <!-- Remove as pastas na desinstalação perUser -->
                         <RemoveFolder Id="RemoveAppFolder" Directory="APPLICATIONFOLDER" On="uninstall" />
                     </Component>
                 </Directory>
@@ -27,7 +23,6 @@
 
         <Feature Id="ProductFeature" Title="Voices Installation" Level="1">
             <ComponentRef Id="MainExecutable" />
-            <!-- O WiX vai injetar as dependências da pasta de forma dinâmica aqui -->
             <ComponentGroupRef Id="AppFilesGroup" />
         </Feature>
     </Product>

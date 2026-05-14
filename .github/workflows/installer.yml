@@ -20,12 +20,13 @@ jobs:
       - name: Extract Release Zip
         run: |
           mkdir SourceFiles
+          # Descompacta o ZIP dentro de uma subpasta chamada voices.dist para manter a estrutura original
           Expand-Archive -Path voices-windows.zip -DestinationPath SourceFiles
 
       - name: Harvest Directory Files (WiX heat)
         run: |
-          # O utilitário heat mapeia automaticamente todas as DLLs e pastas geradas pelo Nuitka
-          heat.exe dir SourceFiles -cg AppFilesGroup -dr APPLICATIONFOLDER -sreg -sfrag -srd -gg -out files.wxs
+          # Adicionamos -b SourceFiles para o WiX saber exatamente onde ler fisicamente as DLLs
+          heat.exe dir SourceFiles\voices.dist -cg AppFilesGroup -dr APPLICATIONFOLDER -sreg -sfrag -srd -gg -b SourceFiles\voices.dist -out files.wxs
 
       - name: Compile Installer (WiX candle & light)
         run: |
