@@ -24,14 +24,14 @@ jobs:
 
       - name: Harvest Directory Files (WiX heat)
         run: |
-          # Apontamos para a raiz de SourceFiles e filtramos o voices.exe para não dar conflito
+          # Coleta a estrutura apontando para a pasta física
           heat.exe dir SourceFiles -cg AppFilesGroup -dr APPLICATIONFOLDER -sreg -sfrag -srd -gg -b SourceFiles -out files.wxs
 
       - name: Compile Installer (WiX candle & light)
         run: |
           candle.exe voices.wxs files.wxs
-          # O parâmetro -ice:ICE61 ignora avisos de atualização irrelevantes para instalação local
-          light.exe -ext WixUIExtension -ice:ICE61 voices.wixobj files.wixobj -o VoicesInstaller.msi
+          # PASSAGEM CRUCIAL: Adicionado -b SourceFiles aqui para corrigir o erro LGHT0103
+          light.exe -ext WixUIExtension -ice:ICE61 -b SourceFiles voices.wixobj files.wixobj -o VoicesInstaller.msi
 
       - name: Upload Installer Artifact
         uses: actions/upload-artifact@v4
