@@ -20,18 +20,18 @@ jobs:
       - name: Extract Release Zip
         run: |
           mkdir SourceFiles
-          # Descompacta o ZIP dentro de uma subpasta chamada voices.dist para manter a estrutura original
           Expand-Archive -Path voices-windows.zip -DestinationPath SourceFiles
 
       - name: Harvest Directory Files (WiX heat)
         run: |
-          # Adicionamos -b SourceFiles para o WiX saber exatamente onde ler fisicamente as DLLs
-          heat.exe dir SourceFiles\voices.dist -cg AppFilesGroup -dr APPLICATIONFOLDER -sreg -sfrag -srd -gg -b SourceFiles\voices.dist -out files.wxs
+          # Apontamos para a raiz de SourceFiles e filtramos o voices.exe para não dar conflito
+          heat.exe dir SourceFiles -cg AppFilesGroup -dr APPLICATIONFOLDER -sreg -sfrag -srd -gg -b SourceFiles -out files.wxs
 
       - name: Compile Installer (WiX candle & light)
         run: |
           candle.exe voices.wxs files.wxs
-          light.exe -ext WixUIExtension voices.wixobj files.wixobj -o VoicesInstaller.msi
+          # O parâmetro -ice:ICE61 ignora avisos de atualização irrelevantes para instalação local
+          light.exe -ext WixUIExtension -ice:ICE61 voices.wixobj files.wixobj -o VoicesInstaller.msi
 
       - name: Upload Installer Artifact
         uses: actions/upload-artifact@v4
