@@ -7,7 +7,7 @@ from kokoro_onnx import Kokoro
 from PySide6.QtWidgets import (QApplication, QMainWindow, QDialog, QWidget, QVBoxLayout,
                              QHBoxLayout, QTextEdit, QComboBox, QPushButton,
                              QLabel, QFileDialog, QDoubleSpinBox, QMessageBox)
-from PySide6.QtCore import QThread, Signal, Qt, QTimer
+from PySide6.QtCore import QThread, Signal, Qt, QTimer, QStandardPaths
 
 # Important:
 # You need to run the following command to generate the form.py file
@@ -142,10 +142,10 @@ class MainWindow(QMainWindow):
 
         self.atualizar_vozes()
 
-        if getattr(sys, 'frozen', False):
-            base_path = os.path.dirname(os.path.abspath(sys.executable))
-        else:
-            base_path = os.path.dirname(os.path.abspath(__file__))
+        app_data_dir = QStandardPaths.writableLocation(QStandardPaths.AppDataLocation)
+        base_path = os.path.join(app_data_dir, "KokoroONNX")
+        
+        os.makedirs(base_path, exist_ok=True)
 
         self.model_path = os.path.join(base_path, "kokoro-v1.0.onnx")
         self.voices_path = os.path.join(base_path, "voices-v1.0.bin")
@@ -243,6 +243,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setApplicationName("Voices")
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
