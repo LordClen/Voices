@@ -151,7 +151,7 @@ class Ui_Dialog(object):
         self.subtitleLabel.setText(QCoreApplication.translate("Dialog", u"Uma interface gr\u00e1fica para Kokoro ONNX\n"
 "", None))
         self.versionLabel.setText(QCoreApplication.translate("Dialog", u"Vers\u00e3o 0.1.0, 64bits", None))
-        self.pyside6Version.setText(QCoreApplication.translate("Dialog", u"PySide6 version: 6.11.0", None))
+        self.pyside6Version.setText(QCoreApplication.translate("Dialog", u"<p align=\"center\"><small>Desenvolvido em:<br>Python v3.12.13 e PySide6 v6.11.0.</small></p>", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"<p align=\"center\"><b>Voices</b> \u00e9 um projeto de c\u00f3digo aberto (Open Source) sob a <br> <span style='color: #2ecc71;'>Licen\u00e7a MIT</span>.</p>\n"
 "<p align=\"center\"><a href=\"https://github.com/LordClen/Voices\">Ver c\u00f3digo fonte no GitHub</a></p>\n"
 "<p align=\"center\"><small>Este software utiliza o modelo Kokoro-82M para s\u00edntese de voz.<br>\n"

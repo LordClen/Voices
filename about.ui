@@ -167,7 +167,7 @@
      <item>
       <widget class="QLabel" name="pyside6Version">
        <property name="text">
-        <string>PySide6 version: 6.11.0</string>
+        <string>&lt;p align=&quot;center&quot;&gt;&lt;small&gt;Desenvolvido em:&lt;br&gt;Python v3.12.13 e PySide6 v6.11.0.&lt;/small&gt;&lt;/p&gt;</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignCenter</set>
