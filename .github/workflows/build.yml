@@ -37,7 +37,8 @@ jobs:
 
       - name: Build with Nuitka
         run: |
-          uv run --refresh --with "nuitka>=2.0" --with pyside6 --with soundfile --with kokoro-onnx --with onnxruntime --with espeakng-loader python -m nuitka --standalone --remove-output --enable-plugin=pyside6 --follow-imports --include-package=soundfile --include-package=onnxruntime --include-package=kokoro_onnx --include-package=espeakng_loader --include-data-dir=assets=assets --include-package-data=onnxruntime --include-package-data=kokoro_onnx --include-package-data=language_tags --include-package-data=espeakng_loader --assume-yes-for-downloads --disable-ccache --jobs=2 voices.py
+          uv run --refresh --with "nuitka>=2.0" --with pyside6 --with soundfile --with kokoro-onnx --with onnxruntime --with espeakng-loader python -m nuitka --standalone --remove-output --enable-plugin=pyside6 --follow-imports --include-package=soundfile --include-package=onnxruntime --include-package=kokoro_onnx --include-package=espeakng_loader --include-data-dir=assets=assets --include-package-data=onnxruntime --include-package-data=kokoro_onnx --include-package-data=language_tags --include-package-data=espeakng_loader --include-distribution-metadata=kokoro-onnx --include-distribution-metadata=onnxruntime --assume-yes-for-downloads --disable-ccache --jobs=2 voices.py
+
 
       # Unificamos os dois passos antigos em um único passo dinâmico usando a matrix
       - name: Pack standalone folder
