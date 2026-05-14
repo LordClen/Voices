@@ -143,7 +143,7 @@ class MainWindow(QMainWindow):
         self.atualizar_vozes()
 
         if getattr(sys, 'frozen', False):
-            base_path = os.path.dirname(os.path.abspath(sys.executable))
+            base_path = os.path.dirname(os.path.abspath(sys.argv[0]))
         else:
             base_path = os.path.dirname(os.path.abspath(__file__))
 
@@ -182,10 +182,10 @@ class MainWindow(QMainWindow):
                 "voices-v1.0.bin": "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin"
                 }
             
-        self.worker = DownloadWorker(urls, os.path.dirname(self.model_path))
-        self.worker.progresso.connect(self.ui.status_label.setText)
-        self.worker.finalizado.connect(self.finalizar_requisicao_download)
-        self.worker.start()
+        self.download_worker = DownloadWorker(urls, os.path.dirname(self.model_path))
+        self.download_worker.progresso.connect(self.ui.status_label.setText)
+        self.download_worker.finalizado.connect(self.finalizar_requisicao_download)
+        self.download_worker.start()
 
     def finalizar_requisicao_download(self, sucesso):
         if hasattr(self, 'status_animator'):
