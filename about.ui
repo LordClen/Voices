@@ -26,8 +26,8 @@
    <string>Sobre</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>assets/icons/aboutBlack.svg</normaloff>assets/icons/aboutBlack.svg</iconset>
+   <iconset resource="resources.qrc">
+    <normaloff>:/assets/icons/aboutBlack.svg</normaloff>:/assets/icons/aboutBlack.svg</iconset>
   </property>
   <property name="modal">
    <bool>true</bool>

@@ -28,7 +28,7 @@ class Ui_Dialog(object):
         Dialog.setMinimumSize(QSize(400, 300))
         Dialog.setMaximumSize(QSize(400, 300))
         icon = QIcon()
-        icon.addFile(u"assets/icons/aboutBlack.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u":/assets/icons/aboutBlack.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         Dialog.setWindowIcon(icon)
         Dialog.setModal(True)
         self.verticalLayout_3 = QVBoxLayout(Dialog)
