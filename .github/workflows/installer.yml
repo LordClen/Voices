@@ -1,0 +1,39 @@
+name: Build Windows Installer
+
+on:
+  workflow_dispatch: # Permite que você clique em um botão no GitHub para gerar o instalador quando quiser
+
+jobs:
+  msi-installer:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download Latest Release Artifact
+        uses: robinraju/release-downloader@v1.11
+        with:
+          latest: true
+          fileName: "voices-windows.zip" # Nome do zip gerado pela sua outra pipeline
+
+      - name: Extract Release Zip
+        run: |
+          mkdir SourceFiles
+          Expand-Archive -Path voices-windows.zip -DestinationPath SourceFiles
+
+      - name: Harvest Directory Files (WiX heat)
+        run: |
+          # O utilitário heat mapeia automaticamente todas as DLLs e pastas geradas pelo Nuitka
+          heat.exe dir SourceFiles -cg AppFilesGroup -dr APPLICATIONFOLDER -sreg -sfrag -srd -gg -out files.wxs
+
+      - name: Compile Installer (WiX candle & light)
+        run: |
+          candle.exe voices.wxs files.wxs
+          light.exe -ext WixUIExtension voices.wixobj files.wixobj -o VoicesInstaller.msi
+
+      - name: Upload Installer Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Voices-Windows-Installer
+          path: VoicesInstaller.msi
